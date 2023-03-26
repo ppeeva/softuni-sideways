@@ -5,15 +5,15 @@ import { AuthContext } from './contexts/AuthContext';
 import { authServiceFactory } from './services/authService';
 import { sidewayServiceFactory } from './services/sidewayService';
 
-import { Header } from './components/Header';
-import { Home } from './components/Home';
-import { SidewaysList } from './components/SidewaysList';
-import { Login } from './components/Login';
-import { Logout } from './components/Logout';
-import { Register } from './components/Register';
-import { CreateSideway } from './components/CreateSideway';
-import { SidewayDetails } from './components/SidewayDetails';
-import { EditSideway } from './components/EditSideway';
+import { Header } from './components/Header/Header';
+import { Home } from './components/Home/Home';
+import { SidewaysList } from './components/Sideways/SidewaysList/SidewaysList';
+import { Login } from './components/Auth/Login/Login';
+import { Logout } from './components/Auth/Logout/Logout';
+import { Register } from './components/Auth/Register/Register';
+import { CreateSideway } from './components/Sideways/CreateSideway/CreateSideway';
+import { SidewayDetails } from './components/Sideways/SidewayDetails/SidewayDetails';
+import { EditSideway } from './components/Sideways/EditSideway/EditSideway';
 
 function App() {
   const navigate = useNavigate();
@@ -30,13 +30,12 @@ function App() {
       });
   }, []);
 
+
   const onLoginSubmit = async (data) => {
     try {
       const result = await authService.login(data);
-      console.log('login result:', result);
 
       setAuth(result);
-      console.log('auth after login', auth);
 
       navigate('/catalog');
     } catch (error) {
@@ -57,7 +56,7 @@ function App() {
 
       navigate('/catalog');
     } catch (error) {
-      console.log('There is a problem');
+      console.log('Error on register');
     }
   };
 

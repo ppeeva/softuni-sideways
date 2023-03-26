@@ -7,7 +7,7 @@ export const sidewayServiceFactory = (token) => {
     const request = requestFactory(token);
 
     const getAll = async () => {
-        const result = await request.get(baseUrl);
+        const result = await request.get(`${baseUrl}/?sortBy=_createdOn%20desc`);
         const sideways = Object.values(result);
     
         return sideways;
@@ -36,7 +36,6 @@ export const sidewayServiceFactory = (token) => {
     const edit = (sidewayId, data) => request.put(`${baseUrl}/${sidewayId}`, data);
 
     const deleteSideway = (sidewayId) => request.delete(`${baseUrl}/${sidewayId}`);
-
 
     return {
         getAll,

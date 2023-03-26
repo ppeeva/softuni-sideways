@@ -21,7 +21,7 @@ const request = async (method, token, url, data) => {
     }
 
     const response = await fetch(url, options);
-
+    
     if (response.status === 204) {
         return {};
     }
@@ -32,6 +32,7 @@ const request = async (method, token, url, data) => {
         throw result;
     }
 
+    console.log('response:', response);
     return result;
 };
 

@@ -1,14 +1,8 @@
-import { SidewaysListItem } from './SidewaysListItem';
-import { AuthContext } from '../contexts/AuthContext';
-import { useContext } from 'react';
+import { SidewaysListItem } from '../SidewaysListItem/SidewaysListItem';
 
 export const SidewaysList = ({
     sideways,
 }) => {
-    const { token } = useContext(AuthContext);
-
-    console.log('catalog token: ', token);
-
     return (
         <section>
             <h1>All Sideways</h1>

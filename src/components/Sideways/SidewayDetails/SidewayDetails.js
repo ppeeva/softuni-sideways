@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
-import { sidewayServiceFactory } from '../services/sidewayService';
-import { useService } from '../hooks/useService';
-import { AuthContext } from '../contexts/AuthContext';
+import { sidewayServiceFactory } from '../../../services/sidewayService';
+import { useService } from '../../../hooks/useService';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 export const SidewayDetails = () => {
     const { userId } = useContext(AuthContext);
