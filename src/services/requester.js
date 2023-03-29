@@ -32,7 +32,7 @@ const request = async (method, token, url, data) => {
         throw result;
     }
 
-    console.log('response:', response);
+    // console.log('response:', response);
     return result;
 };
 

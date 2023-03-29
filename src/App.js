@@ -15,7 +15,12 @@ import { CreateSideway } from './components/Sideways/CreateSideway/CreateSideway
 import { SidewayDetails } from './components/Sideways/SidewayDetails/SidewayDetails';
 import { EditSideway } from './components/Sideways/EditSideway/EditSideway';
 
+import { initialCatalog } from './initialData';
+
+
 function App() {
+  // console.log('render App');
+
   const navigate = useNavigate();
   const [auth, setAuth] = useState({});
   const [sideways, setSideways] = useState([]);
@@ -23,12 +28,53 @@ function App() {
   const authService = authServiceFactory(auth.accessToken);
   const sidewayService = sidewayServiceFactory(auth.accessToken);
 
+
   useEffect(() => {
-    sidewayService.getAll()
-      .then(result => {
-        setSideways(result);
+    populateData()
+      .then(() => {
+        sidewayService.getAll()
+          .then(result => {
+            setSideways(result);
+          });
       });
   }, []);
+
+
+  const populateData = async () => {
+    try {
+      // console.log('populateData ');
+
+      const loginData = {
+        email: 'peter@abv.bg',
+        password: '123456'
+      };
+
+      let token = '';
+
+      const loginResult = await authService.login(loginData);
+      // console.log('login result:', loginResult);
+
+      token = loginResult.accessToken;
+      const sidewayService = sidewayServiceFactory(token);
+
+      const count = await sidewayService.getCount();
+      // console.log('count:', count);
+
+      if (count === 0) {
+        // console.log('add initial data');
+        for (let data of initialCatalog) {
+          const createResult = await sidewayService.create(data);
+          // console.log('create result', createResult);
+        }
+      }
+
+      // TODO: error on logout??
+      //await authService.logout();
+    }
+    catch (error) {
+      console.log(error);
+    };
+  };
 
 
   const onLoginSubmit = async (data) => {
