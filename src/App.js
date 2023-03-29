@@ -129,6 +129,14 @@ function App() {
     navigate(`/catalog/${values._id}`);
   };
 
+  const onSidewayDelete = async (sidewayId) => {
+    await sidewayService.delete(sidewayId);
+
+    setSideways(state => state.filter(x => x._id !== sidewayId));
+
+    navigate('/catalog');
+  };
+
 
   const contextValues = {
     onLoginSubmit,
@@ -154,7 +162,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/catalog' element={<SidewaysList sideways={sideways} />} />
             <Route path='/catalog/create' element={<CreateSideway onCreateSidewaySubmit={onCreateSidewaySubmit} />} />
-            <Route path='/catalog/:sidewayId' element={<SidewayDetails />} />
+            <Route path='/catalog/:sidewayId' element={<SidewayDetails onSidewayDelete={onSidewayDelete} />} />
             <Route path='/catalog/:sidewayId/edit' element={<EditSideway onSidewayEditSubmit={onSidewayEditSubmit} />} />
           </Routes>
         </main>

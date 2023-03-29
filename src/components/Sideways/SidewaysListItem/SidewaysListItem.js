@@ -9,7 +9,7 @@ export const SidewaysListItem = ({
     return (
         <div >
             <div >
-                <img src={imageUrl} alt="sideway"/>
+                <img src={imageUrl} alt={title}/>
                 <h6>{category}</h6>
                 <h2>{title}</h2>
                 <Link to={`/catalog/${_id}`} >Details</Link>

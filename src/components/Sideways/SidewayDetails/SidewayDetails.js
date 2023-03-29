@@ -5,7 +5,9 @@ import { sidewayServiceFactory } from '../../../services/sidewayService';
 import { useService } from '../../../hooks/useService';
 import { AuthContext } from '../../../contexts/AuthContext';
 
-export const SidewayDetails = () => {
+export const SidewayDetails = ({
+    onSidewayDelete
+}) => {
     const { userId } = useContext(AuthContext);
     const [username, setUsername] = useState('');
     const [comment, setComment] = useState('');
@@ -36,21 +38,13 @@ export const SidewayDetails = () => {
 
     const isOwner = sideway._ownerId === userId;
 
-    const onDeleteClick = async () => {
-        await sidewayService.delete(sideway._id);
-
-        // TODO: delete from state
-
-        navigate('/catalog');
-    };
-
     return (
         <section id="sideway-details">
             <h1>Sideway Details</h1>
             <div >
 
                 <div >
-                    <img src={sideway.imageUrl} alt="sideway"/>
+                    <img src={sideway.imageUrl} alt={sideway.title}/>
                     <h1>{sideway.title}</h1>
                     <h4>{sideway.location}</h4>
                     <p >{sideway.category}</p>
@@ -76,7 +70,7 @@ export const SidewayDetails = () => {
                 {isOwner && (
                     <div className="buttons">
                         <Link to={`/catalog/${sideway._id}/edit`} className="button">Edit</Link>
-                        <button className="button" onClick={onDeleteClick}>Delete</button>
+                        <button className="button" onClick={() => onSidewayDelete(sideway._id)}>Delete</button>
                     </div>
                 )}
             </div>
