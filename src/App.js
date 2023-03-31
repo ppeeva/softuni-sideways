@@ -9,7 +9,7 @@ import { sidewayServiceFactory } from './services/sidewayService';
 import { Header } from './components/Header/Header';
 import { Home } from './components/Home/Home';
 import { Login } from './components/Login/Login';
-import { Logout } from './components/Auth/Logout/Logout';
+import { Logout } from './components/Logout/Logout';
 import { Register } from './components/Register/Register';
 import { SidewayList } from './components/SidewayList/SidewayList';
 import { SidewayCreate } from './components/SidewayCreate/SidewayCreate';
