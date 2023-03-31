@@ -1,7 +1,7 @@
-import { useForm } from '../../../hooks/useForm';
+import { useForm } from '../../hooks/useForm';
 
-export const CreateSideway = ({
-    onCreateSidewaySubmit,
+export const SidewayCreate = ({
+    onSidewayCreate,
 }) => {
     const { values, changeHandler, onSubmit } = useForm({
         title: '',
@@ -9,7 +9,7 @@ export const CreateSideway = ({
         category: '',
         imageUrl: '',
         description: '',
-    }, onCreateSidewaySubmit);
+    }, onSidewayCreate);
 
     return (
         <section >

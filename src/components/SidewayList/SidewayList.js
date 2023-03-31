@@ -1,6 +1,6 @@
-import { SidewaysListItem } from '../SidewaysListItem/SidewaysListItem';
+import { SidewayListItem } from '../SidewayListItem/SidewayListItem';
 
-export const SidewaysList = ({
+export const SidewayList = ({
     sideways,
 }) => {
     return (
@@ -8,7 +8,7 @@ export const SidewaysList = ({
             <h1>All Sideways</h1>
 
             {sideways.map(x =>
-                <SidewaysListItem key={x._id} {...x} />
+                <SidewayListItem key={x._id} {...x} />
             )}
 
             {sideways.length === 0 && (

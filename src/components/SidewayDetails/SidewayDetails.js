@@ -1,9 +1,11 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
-import { sidewayServiceFactory } from '../../../services/sidewayService';
-import { useService } from '../../../hooks/useService';
-import { AuthContext } from '../../../contexts/AuthContext';
+import { sidewayServiceFactory } from '../../services/sidewayService';
+import { useService } from '../../hooks/useService';
+import { AuthContext } from '../../contexts/AuthContext';
+
+import { formatDate } from '../../utils/dateHelper';
 
 export const SidewayDetails = ({
     onSidewayDelete
@@ -51,6 +53,8 @@ export const SidewayDetails = ({
                 </div>
 
                 <p className="text">{sideway.description}</p>
+                <p>Created on: {formatDate(sideway._createdOn)}</p>
+                <p>Author: {sideway._ownerId}</p> 
 
                 {/* <div className="details-comments">
                     <h2>Comments:</h2>

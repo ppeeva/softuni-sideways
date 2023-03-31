@@ -32,7 +32,7 @@ export const sidewayServiceFactory = (token) => {
     const create = async (data) => {
         const result = await request.post(baseUrl, data);
 
-        console.log(result);
+        // console.log(result);
 
         return result;
     };
