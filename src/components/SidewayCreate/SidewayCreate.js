@@ -1,5 +1,6 @@
 import { useForm } from '../../hooks/useForm';
 import { validationHelper } from '../../utils/validationHelper';
+import styles from './SidewayCreate.module.css'
 
 export const SidewayCreate = ({
     onSidewayCreate,
@@ -13,7 +14,7 @@ export const SidewayCreate = ({
     }, onSidewayCreate, validationHelper.validateSideway);
 
     return (
-        <section >
+        <section id="create-page" className={styles['create-page']}>
             <form id="create" method="post" onSubmit={onSubmit}>
                 <div >
                     <h1>Create Sideway</h1>

@@ -1,11 +1,12 @@
 import { SidewayListItem } from '../SidewayListItem/SidewayListItem';
+import styles from './SidewayList.module.css'
 
 export const SidewayList = ({
     sideways,
 }) => {
     return (
-        <section>
-            <h1>All Sideways</h1>
+        <section id="catalog-page" className={styles['catalog-page']}>
+            <h1 className={styles['catalog-page']}>All Sideways</h1>
 
             {sideways.map(x =>
                 <SidewayListItem key={x._id} {...x} />

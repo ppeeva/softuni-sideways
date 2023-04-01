@@ -1,8 +1,8 @@
-export const Home = () => {
-    // console.log('render Home');
+import styles from './Home.module.css';
 
+export const Home = () => {
     return (
-        <section>
+        <section className={styles['home-page']}>
             <h1>Home page</h1>
         </section>
     );
