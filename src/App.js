@@ -15,6 +15,8 @@ import { SidewayList } from './components/SidewayList/SidewayList';
 import { SidewayCreate } from './components/SidewayCreate/SidewayCreate';
 import { SidewayDetails } from './components/SidewayDetails/SidewayDetails';
 import { SidewayEdit } from './components/SidewayEdit/SidewayEdit';
+import { MyProfile } from './components/MyProfile/MyProfile';
+import { NotFound } from './components/NotFound/NotFound';
 
 import { initialCatalog } from './initialData';
 
@@ -169,9 +171,11 @@ function App() {
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/catalog' element={<SidewayList sideways={sideways} />} />
-                        <Route path='/catalog/create' element={<SidewayCreate onSidewayCreate={onSidewayCreate} />} />
+                        <Route path='/create' element={<SidewayCreate onSidewayCreate={onSidewayCreate} />} />
                         <Route path='/catalog/:sidewayId' element={<SidewayDetails onSidewayDelete={onSidewayDelete} />} />
                         <Route path='/catalog/:sidewayId/edit' element={<SidewayEdit onSidewayEdit={onSidewayEdit} />} />
+                        <Route path='/profile/*' element={ contextValues.isAuthenticated ? <MyProfile /> : <NotFound />} />
+                        <Route path='*' element={<NotFound />} />
                     </Routes>
                 </main>
             </div>

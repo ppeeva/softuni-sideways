@@ -1,36 +1,16 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { Navigation } from '../Navigation/Navigation';
+import styles from './../Navigation/Navigation.module.css'
 
-import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
 
 export const Header = () => {
-    const { isAuthenticated, userEmail } = useContext(AuthContext);
 
     return (
-
         <header>
-            <h1><Link to="/">Sideways</Link></h1>
-            <nav>
-                <Link to="/catalog">Sideways</Link>
-                {isAuthenticated && (
-                    <>
-                        <span>{userEmail}</span>
-                        {/* <Link to="/profile/favs">My Favourites</Link>
-                        <Link to="/profile/visited">My Visited</Link>
-                        <Link to="/profile/planned">My Planned</Link> 
-                        <Link to="/profile">Profile</Link>*/}
-                        <Link to="/catalog/create">Create</Link>
-                        <Link to="/logout">Logout</Link>
-                    </>
-                )}
-
-                {!isAuthenticated && (
-                    <div id="guest">
-                        <Link to="/login">Login</Link>
-                        <Link to="/register">Register</Link>
-                    </div>
-                )}
-            </nav>
+            <h1 className={styles.navigation}>
+                <NavLink className={({isActive}) => isActive ? styles['nav-active'] : '' } to="/">Sideways</NavLink>
+            </h1>
+            <Navigation />
         </header>
     );
 };
