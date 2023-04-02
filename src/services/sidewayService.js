@@ -1,59 +1,37 @@
-import { requestFactory } from './requester';
+import * as request from './requester';
 
 const baseUrl = 'http://localhost:3030/data/sideways';
 
-export const sidewayServiceFactory = (token) => {
-    // console.log('sideway service token: ', token);
-    const request = requestFactory(token);
 
-    const getAll = async () => {
-        const result = await request.get(`${baseUrl}/?sortBy=_createdOn%20desc`);
-        const sideways = Object.values(result);
+export const getAll = async () => {
+    const result = await request.get(`${baseUrl}/?sortBy=_createdOn%20desc`);
+    const sideways = Object.values(result);
 
-        return sideways;
-    };
-
-    const getOne = async (sidewayId) => {
-        const result = await request.get(`${baseUrl}/${sidewayId}`);
-
-        return result;
-    };
-
-    const getCount = async () => {
-        try {
-            const result = await request.get(`${baseUrl}/?count`);
-            return result;
-        }
-        catch (error) {
-            return 0;
-        }
-    };
-
-    const create = async (data) => {
-        const result = await request.post(baseUrl, data);
-
-        // console.log(result);
-
-        return result;
-    };
-
-    const addComment = async (sidewayId, data) => {
-        const result = await request.post(`${baseUrl}/${sidewayId}/comments`, data);
-
-        return result;
-    };
-
-    const edit = (sidewayId, data) => request.put(`${baseUrl}/${sidewayId}`, data);
-
-    const deleteSideway = (sidewayId) => request.delete(`${baseUrl}/${sidewayId}`);
-
-    return {
-        getAll,
-        getOne,
-        getCount,
-        create,
-        edit,
-        addComment,
-        delete: deleteSideway,
-    };
+    return sideways;
 };
+
+export const getOne = async (sidewayId) => {
+    const result = await request.get(`${baseUrl}/${sidewayId}`);
+
+    return result;
+};
+
+export const getCount = async () => {
+    try {
+        const result = await request.get(`${baseUrl}/?count`);
+        return result;
+    }
+    catch (error) {
+        return 0;
+    }
+};
+
+export const create = async (data, token) => {
+    const result = await request.post(baseUrl, data, token);
+
+    return result;
+};
+
+export const edit = (sidewayId, data, token) => request.put(`${baseUrl}/${sidewayId}`, data, token);
+
+export const deleteSideway = (sidewayId, token) => request.del(`${baseUrl}/${sidewayId}`, null, token);

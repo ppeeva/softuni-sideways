@@ -2,15 +2,13 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useForm } from '../../hooks/useForm';
-import { useService } from '../../hooks/useService';
-import { sidewayServiceFactory } from '../../services/sidewayService';
+import * as sidewayService from '../../services/sidewayService';
 import { validationHelper } from '../../utils/validationHelper';
 
 export const SidewayEdit = ({
     onSidewayEdit,
 }) => {
     const { sidewayId } = useParams();
-    const sidewayService = useService(sidewayServiceFactory);
     const { values, formErrors, changeHandler, onSubmit, changeValues } = useForm({
         _id: '',
         title: '',

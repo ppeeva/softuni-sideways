@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import styles from './SidewayListItem.module.css';
 
 export const SidewayListItem = ({
     _id,
@@ -8,12 +7,12 @@ export const SidewayListItem = ({
     category,
 }) => {
     return (
-        <div className={styles['allSideways']}>
-            <div className={styles['allSideways-info']}>
+        <div>
+            <div>
                 <img src={imageUrl} alt={title}/>
-                <h6 className={styles['allSideways-info']}>{category}</h6>
-                <h2 className={styles['allSideways-info']}>{title}</h2>
-                <Link to={`/catalog/${_id}`} className={styles['details-button']}>Details</Link>
+                <h6 >{category}</h6>
+                <h2 >{title}</h2>
+                <Link to={`/catalog/${_id}`} >Details</Link>
             </div>
         </div>
     );

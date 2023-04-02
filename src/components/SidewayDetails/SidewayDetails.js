@@ -1,8 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
-import { sidewayServiceFactory } from '../../services/sidewayService';
-import { useService } from '../../hooks/useService';
+import * as sidewayService from '../../services/sidewayService';
 import { AuthContext } from '../../contexts/AuthContext';
 
 import { formatDate } from '../../utils/dateHelper';
@@ -15,8 +14,7 @@ export const SidewayDetails = ({
     const [comment, setComment] = useState('');
     const { sidewayId } = useParams();
     const [sideway, setSideway] = useState({});
-    const sidewayService = useService(sidewayServiceFactory);
-    const navigate = useNavigate();
+    const {token} = useContext(AuthContext);
 
     useEffect(() => {
         sidewayService.getOne(sidewayId)
@@ -28,14 +26,14 @@ export const SidewayDetails = ({
     const onCommentSubmit = async (e) => {
         e.preventDefault();
 
-        const result = await sidewayService.addComment(sidewayId, {
-            username,
-            comment,
-        });
+        // const result = await commentService.create(sidewayId, {
+        //     username,
+        //     comment,
+        // });
 
-        setSideway(state => ({ ...state, comments: { ...state.comments, [result._id]: result } }));
-        setUsername('');
-        setComment('');
+        // // setSideway(state => ({ ...state, comments: { ...state.comments, [result._id]: result } }));
+        // setUsername('');
+        // setComment('');
     };
 
     const isOwner = sideway._ownerId === userId;
@@ -56,7 +54,7 @@ export const SidewayDetails = ({
                 <p>Created on: {formatDate(sideway._createdOn)}</p>
                 <p>Author: {sideway._ownerId}</p> 
 
-                {/* <div className="details-comments">
+                <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
                         {sideway.comments && Object.values(sideway.comments).map(x => (
@@ -66,27 +64,27 @@ export const SidewayDetails = ({
                         ))}
                     </ul>
 
-                    {!Object.values(sideway.comments).length && (
+                    {sideway.comments && !Object.values(sideway.comments).length && (
                         <p className="no-comment">No comments.</p>
                     )}
-                </div> */}
+                </div>
 
                 {isOwner && (
                     <div className="buttons">
                         <Link to={`/catalog/${sideway._id}/edit`} className="button">Edit</Link>
-                        <button className="button" onClick={() => onSidewayDelete(sideway._id)}>Delete</button>
+                        <button className="button" onClick={() => onSidewayDelete(sideway._id, token)}>Delete</button>
                     </div>
                 )}
             </div>
 
-            {/* <article className="create-comment">
+            <article className="create-comment">
                 <label>Add new comment:</label>
                 <form className="form" onSubmit={onCommentSubmit}>
                     <input type="text" name="username" placeholder='Пешо' value={username} onChange={(e) => setUsername(e.target.value)} />
                     <textarea name="comment" placeholder="Comment......" value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
                     <input className="btn submit" type="submit" value="Add Comment" />
                 </form>
-            </article> */}
+            </article>
 
         </section>
     );

@@ -1,6 +1,5 @@
 import { useForm } from '../../hooks/useForm';
 import { validationHelper } from '../../utils/validationHelper';
-import styles from './SidewayCreate.module.css'
 
 export const SidewayCreate = ({
     onSidewayCreate,
@@ -14,7 +13,7 @@ export const SidewayCreate = ({
     }, onSidewayCreate, validationHelper.validateSideway);
 
     return (
-        <section id="create-page" className={styles['create-page']}>
+        <section id="create-page" >
             <form id="create" method="post" onSubmit={onSubmit}>
                 <div >
                     <h1>Create Sideway</h1>
@@ -36,7 +35,7 @@ export const SidewayCreate = ({
                     }
 
                     <label htmlFor="category">Category:</label>
-                    <input value={values.category} onChange={changeHandler} type="text" id="category" name="category" placeholder="Enter sideway category..." />
+                    <input className value={values.category} onChange={changeHandler} type="text" id="category" name="category" placeholder="Enter sideway category..." />
                     {formErrors.category &&
                         <p className="form-error">
                             {formErrors.category}
@@ -44,7 +43,7 @@ export const SidewayCreate = ({
                     }
                     
                     <label htmlFor="imageUrl">Image:</label>
-                    <input value={values.imageUrl} onChange={changeHandler} type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..." />
+                    <input  value={values.imageUrl} onChange={changeHandler} type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..." />
 
                     <label htmlFor="description">Description:</label>
                     <textarea name="description" id="description" value={values.description} onChange={changeHandler}></textarea>
@@ -54,7 +53,7 @@ export const SidewayCreate = ({
                         </p>
                     }
 
-                    <input className="btn submit" type="submit" value="Create Sideway" />
+                    <input type="submit" value="Create Sideway" />
                 </div>
             </form>
         </section>
