@@ -21,6 +21,18 @@ const validateSideway = (sidewayData) => {
     return errors;
 }
 
+const validateComment = (commentData) => {
+    let errors = {};
+
+    if (!commentData.comment || commentData.comment.length < 3 || commentData.comment.length > 500) {
+        errors.comment = "Comment must be between 3 and 500 characters long!";
+    }
+
+    return errors;
+}
+
+
 export const validationHelper = {
     validateSideway,
+    validateComment,
 };

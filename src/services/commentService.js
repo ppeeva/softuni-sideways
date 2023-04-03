@@ -1,28 +1,20 @@
-// import { requestFactory } from './requester';
+import * as request from './requester';
 
-// const baseUrl = 'http://localhost:3030/data/comments';
+const baseUrl = 'http://localhost:3030/data/comments';
 
-// export const commentServiceFactory = (token) => {
-//     const request = requestFactory(token);
 
-//     const getAll = async (sidewayId) => {
-//         const query = encodeURIComponent(`sidewayId="${sidewayId}"`);
-        
-//         const result = await request.get(`${baseUrl}/?where=${query}`);
-//         const comments = Object.values(result);
+export const create = async (sidewayId, comment, token) => {
+    const result = await request.post(baseUrl, {sidewayId, comment}, token);
 
-//         return comments;
-//     };
+    return result;
+};
+
+export const getAll = async (sidewayId) => {
+    const searchQuery = encodeURIComponent(`sidewayId="${sidewayId}"`);
+    const relationQuery = encodeURIComponent(`author=_ownerId:users`);
     
-//     const create = async (data) => {
-//         const result = await request.post(baseUrl, data);
+    const result = await request.get(`${baseUrl}/?where=${searchQuery}&load=${relationQuery}`);
+    const comments = Object.values(result);
 
-//         return result;
-//     };
-
-   
-//     return {
-//         getAll,
-//         create,
-//     };
-// };
+    return comments;
+};

@@ -82,14 +82,15 @@ function App() {
     };
 
     const onSidewayDelete = async (sidewayId, token) => {
-        if(window.confirm('Are you sure you want to delete this sideway?')){
+        if (window.confirm('Are you sure you want to delete this sideway?')) {
             await sidewayService.deleteSideway(sidewayId, token);
-    
+
             setSideways(state => state.filter(x => x._id !== sidewayId));
-    
+
             navigate('/catalog');
         }
     };
+
 
     return (
         <AuthProvider>
@@ -107,7 +108,7 @@ function App() {
                         <Route path='/catalog/:sidewayId' element={<SidewayDetails onSidewayDelete={onSidewayDelete} />} />
                         <Route path='/catalog/:sidewayId/edit' element={<SidewayEdit onSidewayEdit={onSidewayEdit} />} />
                         {/* <Route path='/profile/*' element={ contextValues.isAuthenticated ? <MyProfile /> : <NotFound />} /> */}
-                        <Route path='/profile/*' element={ <MyProfile /> } />
+                        <Route path='/profile/*' element={<MyProfile />} />
                         <Route path='*' element={<NotFound />} />
                     </Routes>
                 </main>

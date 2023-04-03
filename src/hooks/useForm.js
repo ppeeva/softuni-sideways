@@ -19,11 +19,12 @@ export const useForm = (initialValues, onSubmitHandler, validateHandler) => {
             setFormErrors(errors);
         } else if (typeof (onSubmitHandler) === 'function') {
             onSubmitHandler(values, token);
+            setValues(initialValues);
         }
     };
 
     const changeValues = (newValues) => {
-        // Validate newValues shape (like initialValues)
+        // validate newValues shape (like initialValues)
         const updatedValues = {...initialValues};
         Object.keys(updatedValues).forEach(key => updatedValues[key] = newValues[key]);
 
