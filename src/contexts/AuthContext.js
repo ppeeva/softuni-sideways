@@ -23,6 +23,7 @@ export const AuthProvider = ({
             navigate('/catalog');
         } catch (error) {
             console.log('Error on login', error);
+            throw new Error(error.message);
         }
     };
 
@@ -46,7 +47,6 @@ export const AuthProvider = ({
 
     const onLogout = async () => {
         try {
-            console.log('try logout token', auth.accessToken);
             await authService.logout(auth.accessToken);
 
             setAuth({});
