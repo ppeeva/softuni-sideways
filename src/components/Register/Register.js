@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 
 import { useForm } from '../../hooks/useForm';
 import { AuthContext } from '../../contexts/AuthContext';
+import { validationHelper } from '../../utils/validationHelper';
 
 export const Register = () => {
     const { onRegister } = useContext(AuthContext);
-    const { values, changeHandler, onSubmit } = useForm({
+    const { values, formErrors, changeHandler, onSubmit } = useForm({
         email: '',
         password: '',
         confirmPassword: '',
-    }, onRegister);
+    }, onRegister, validationHelper.validateRegister);
 
     return (
         <section >
@@ -27,6 +28,11 @@ export const Register = () => {
                         value={values.email}
                         onChange={changeHandler}
                     />
+                    {formErrors.email &&
+                        <p className="form-error">
+                            {formErrors.email}
+                        </p>
+                    }
 
                     <label htmlFor="pass">Password:</label>
                     <input
@@ -36,6 +42,11 @@ export const Register = () => {
                         value={values.password}
                         onChange={changeHandler}
                     />
+                    {formErrors.password &&
+                        <p className="form-error">
+                            {formErrors.password}
+                        </p>
+                    }
 
                     <label htmlFor="con-pass">Confirm Password:</label>
                     <input
@@ -45,6 +56,12 @@ export const Register = () => {
                         value={values.confirmPassword}
                         onChange={changeHandler}
                     />
+                    
+                    {formErrors.confirmPassword &&
+                        <p className="form-error">
+                            {formErrors.confirmPassword}
+                        </p>
+                    }
 
                     <input className="btn submit" type="submit" value="Register" />
 

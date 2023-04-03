@@ -28,11 +28,10 @@ export const AuthProvider = ({
     };
 
     const onRegister = async (values) => {
-        // TODO move validation
         const { confirmPassword, ...registerData } = values;
-        if (confirmPassword !== registerData.password) {
-            return;
-        }
+        // if (confirmPassword !== registerData.password) {
+        //     return;
+        // }
 
         try {
             const result = await authService.register(registerData);

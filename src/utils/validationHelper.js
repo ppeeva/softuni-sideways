@@ -31,8 +31,27 @@ const validateComment = (commentData) => {
     return errors;
 }
 
+const validateRegister = (registerData) => {
+    let errors = {};
+
+    if (!registerData.email) {
+        errors.email = "Missing email";
+    }
+
+    if (!registerData.password || registerData.password.length < 3) {
+        errors.password = "Password must be at least 3 characters!";
+    }
+
+    if (!registerData.confirmPassword || registerData.confirmPassword !== registerData.password) {
+        errors.confirmPassword = "Confirm password does not match!";
+    }
+
+    return errors;
+}
+
 
 export const validationHelper = {
     validateSideway,
     validateComment,
+    validateRegister,
 };
