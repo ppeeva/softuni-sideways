@@ -35,7 +35,7 @@ export const SidewayCreate = ({
                     }
 
                     <label htmlFor="category">Category:</label>
-                    <input className value={values.category} onChange={changeHandler} type="text" id="category" name="category" placeholder="Enter sideway category..." />
+                    <input value={values.category} onChange={changeHandler} type="text" id="category" name="category" placeholder="Enter sideway category..." />
                     {formErrors.category &&
                         <p className="form-error">
                             {formErrors.category}

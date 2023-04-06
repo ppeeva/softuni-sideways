@@ -33,7 +33,7 @@ export const SidewayDetails = ({
                 favSidewayId: favSideway._id,
                 visitedSidewayId: visitedSideway._id,
             });
-            
+
         });
     }, [sidewayId]);
 
@@ -64,11 +64,13 @@ export const SidewayDetails = ({
 
     const onPlanDelete = async () => {
 
-        await planService.deletePlan(sideway.plannedSidewayId, token);
-        setSideway(state => ({
-            ...state,
-            plannedSidewayId: undefined,
-        }));
+        if (sideway.plannedSidewayId) {
+            await planService.deletePlan(sideway.plannedSidewayId, token);
+            setSideway(state => ({
+                ...state,
+                plannedSidewayId: undefined,
+            }));
+        }
     };
 
     const onFavCreate = async () => {
@@ -82,11 +84,13 @@ export const SidewayDetails = ({
 
     const onFavDelete = async () => {
 
-        await favService.deleteFav(sideway.favSidewayId, token);
-        setSideway(state => ({
-            ...state,
-            favSidewayId: undefined,
-        }));
+        if (sideway.favSidewayId) {
+            await favService.deleteFav(sideway.favSidewayId, token);
+            setSideway(state => ({
+                ...state,
+                favSidewayId: undefined,
+            }));
+        }
     };
 
     const onVisitCreate = async () => {
@@ -102,11 +106,13 @@ export const SidewayDetails = ({
 
     const onVisitDelete = async () => {
 
-        await visitService.deleteVisit(sideway.visitedSidewayId, token);
-        setSideway(state => ({
-            ...state,
-            visitedSidewayId: undefined,
-        }));
+        if(sideway.visitedSidewayId){
+            await visitService.deleteVisit(sideway.visitedSidewayId, token);
+            setSideway(state => ({
+                ...state,
+                visitedSidewayId: undefined,
+            }));
+        }        
     };
 
 

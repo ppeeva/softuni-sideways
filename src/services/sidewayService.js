@@ -10,6 +10,15 @@ export const getAll = async () => {
     return sideways;
 };
 
+export const getAllForUser = async (userId) => {
+    const searchQuery = encodeURIComponent(`_ownerId="${userId}"`);
+
+    const result = await request.get(`${baseUrl}/?where=${searchQuery}`);
+    const createdByUser = Object.values(result);
+
+    return createdByUser;
+};
+
 export const getOne = async (sidewayId) => {
     const result = await request.get(`${baseUrl}/${sidewayId}`);
 

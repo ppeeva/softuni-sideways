@@ -9,8 +9,8 @@ export const MyPlanned = ({
             {plans?.length > 0 && (
                 <>
                     {plans.map(x =>
-                        <div key={x._id}>
-                            <Link to={`/catalog/${x._id}`} >{x.sideway.title}</Link>
+                        <div key={x.sidewayId}>
+                            <Link to={`/catalog/${x.sidewayId}`} >{x.sideway.title}</Link>
                         </div>
                     )}
                 </>

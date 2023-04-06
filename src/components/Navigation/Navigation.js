@@ -10,13 +10,13 @@ export const Navigation = () => {
     return (
         <nav className={styles.navigation}>
             <ul>
-                <li><NavLink className={({isActive}) => isActive ? styles['nav-active'] : '' } to="/catalog">Sideways</NavLink></li>
+                <li><NavLink className={({isActive}) => isActive ? styles['nav-active'] : '' } to="/catalog">All sideways</NavLink></li>
                 {isAuthenticated && (
                     <>
-                        <li><NavLink className={({isActive}) => isActive ? styles['nav-active'] : '' } to="/create">Create</NavLink></li>
+                        <li><NavLink className={({isActive}) => isActive ? styles['nav-active'] : '' } to="/create">Create sideway</NavLink></li>
                         <li><NavLink className={({isActive}) => isActive ? styles['nav-active'] : '' } to="/profile">Profile</NavLink></li>
+                        {/* <span>({userEmail})</span> */}
                         <li><NavLink className={({isActive}) => isActive ? styles['nav-active'] : '' } to="/logout">Logout</NavLink></li>
-                        <span>({userEmail})</span>
                     </>
                 )}
 
