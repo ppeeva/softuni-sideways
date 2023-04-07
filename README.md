@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Sideways
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application developed for the ReactJS exam in SoftUni. 
 
-## Available Scripts
+## Functionality
 
-In the project directory, you can run:
+The application serves as a sideways catalog (inspired by the books of Ivan Mihalev and Elina Tzankova). There is a brief information about interesting places one can visit, not necessarilly being the most famoust tourist sites. 
 
-### `npm start`
+Site guests can view the whole catalog and the details of each sideway, as well as the sideway comments if any.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Registered users can: 
+- [1] add new sideways to the catalog
+- [2] edit and delete their own sideways
+- [3] comment on any sideway
+- [4] use the option to mark a sideway as favourite thus generating 'My Favourites' list in their profile
+- [5] use the option to mark a sideway as planned for visit thus generating 'My Planned' list in their profile
+- [6] use the option to mark a sideway as visited thus generating 'My Visits' list in their profile and removing the sideway from the planned list
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Technologies used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js
+- React
+- CSS
+- HTML
+- JavaScript
 
-### `npm run build`
+## Architecture 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### back-end
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The application relies on SoftUni practice server (https://github.com/softuni-practice-server/softuni-practice-server) for storing and retrieving data.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Users can register with email and password and can modify only their own content. 
 
-### `npm run eject`
+LocalStorage is used for persisting the user's token so that they are not logged out on refreshing the page.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### front-end
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+React Router is used for client-side navigation.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ContextAPI is used for distributing and accessing data of the authenticated user across the pages. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The application has stateful React components using React Hooks. 
 
-## Learn More
+Login/Registered and Create/Edit Sideway pages are implemented as Controlled Forms with custom validation.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Separate CSS modules are used for styling the components. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Getting started
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Fork and clone this repository.
+- Run 'npm install' in the terminal.
+- Run 'node server.js' in the terminal and do not close it.
+- Run 'npm start' in another terminal.
