@@ -19,10 +19,8 @@ export const useForm = (initialValues, onSubmitHandler, validateHandler) => {
             setFormErrors(errors);
         } else if (typeof (onSubmitHandler) === 'function') {
             onSubmitHandler(values, token)
-                .then((response) => {
-                    if (response) {
-                        setValues(initialValues);
-                    }
+                .then(() => {
+                    setValues(initialValues);
                 })
                 .catch((error) => {
                     errors.submit = error.message;

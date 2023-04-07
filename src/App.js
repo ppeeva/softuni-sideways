@@ -119,7 +119,7 @@ function App() {
             <div className={styles['App']}>
                 <Navigation />
 
-                <main id="main-content">
+                <main id="main-content" className={styles['main-content']}>
                     <Routes>
                         <Route path='/' element={<Home plansCount={plansCount} visitsCount={visitsCount} sidewaysCount={sidewaysCount}/>} />
                         <Route path='/login' element={<Login />} />

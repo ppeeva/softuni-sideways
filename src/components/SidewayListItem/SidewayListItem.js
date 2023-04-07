@@ -10,10 +10,12 @@ export const SidewayListItem = ({
     return (
         <div className={styles['sideway-card']}>
             <div className={styles['sideway-card-info']}>
-                <img src={imageUrl || "./images/highway.jpg"} alt={title}/>
-                <h2 >{title}</h2>
-                <h5 >{category}</h5>
-                <Link to={`/catalog/${_id}`} >View more</Link>
+                <img src={imageUrl || "/images/highway.jpg"} alt={title} />
+                <div className={styles['card-text']}>
+                    <h2>{title}</h2>
+                    <h5>{category}</h5>
+                    <Link to={`/catalog/${_id}`} className={styles['card-button']}>View more</Link>
+                </div>
             </div>
         </div>
     );

@@ -20,7 +20,8 @@ export const getAllForUser = async (userId) => {
 };
 
 export const getOne = async (sidewayId) => {
-    const result = await request.get(`${baseUrl}/${sidewayId}`);
+    const relationQuery = encodeURIComponent(`owner=_ownerId:users`);
+    const result = await request.get(`${baseUrl}/${sidewayId}/?load=${relationQuery}`);
 
     return result;
 };
@@ -39,7 +40,6 @@ export const getCount = async () => {
 };
 
 export const create = async (data, token) => {
-    console.log(token);
     const result = await request.post(baseUrl, data, token);
 
     return result;

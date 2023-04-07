@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import styles from '../Navigation/Navigation.module.css';
+
 export const MyCreated = ({
     created,
 }) => {
@@ -10,7 +12,7 @@ export const MyCreated = ({
                 <>
                     {created.map(x =>
                         <div key={x._id}>
-                            <Link to={`/catalog/${x._id}`} >{x.title}</Link>
+                            <Link to={`/catalog/${x._id}`} className={styles['nav-link-title']}>{x.title}</Link>
                         </div>
                     )}
                 </>

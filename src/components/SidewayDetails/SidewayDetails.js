@@ -9,7 +9,9 @@ import * as visitService from '../../services/visitService';
 import { AuthContext } from '../../contexts/AuthContext';
 
 import { formatDate } from '../../utils/dateHelper';
-import { CommentCreate } from '../CommentCreate';
+import { CommentCreate } from '../CommentCreate/CommentCreate';
+
+import styles from './SidewayDetails.module.css';
 
 export const SidewayDetails = ({
     onSidewayDelete,
@@ -106,82 +108,95 @@ export const SidewayDetails = ({
 
     const onVisitDelete = async () => {
 
-        if(sideway.visitedSidewayId){
+        if (sideway.visitedSidewayId) {
             await visitService.deleteVisit(sideway.visitedSidewayId, token);
             setSideway(state => ({
                 ...state,
                 visitedSidewayId: undefined,
             }));
-        }        
+        }
     };
 
 
     const isOwner = sideway._ownerId === userId;
 
     return (
-        <section id="sideway-details">
+        <section id="sideway-details" className={styles['sideway-details']}>
             <div >
                 <div >
-                    <h1>{sideway.title}</h1>
-                    <img src={sideway.imageUrl || "./images/highway.jpg"} alt={sideway.title} />
+                    <h1 className={styles['sideway-details-title']}>{sideway.title}</h1>
+                    <h5 className={styles['sideway-details-subtitle']}>{sideway.category}</h5>
 
-                    {isAuthenticated && !sideway.favSidewayId && (
-                        <button type="button" onClick={onFavCreate}>Fav</button>
-                    )}
+                    <div className={styles['action-buttons']}>
+                        {isAuthenticated && !sideway.favSidewayId && (
+                            <button type="button" onClick={onFavCreate} className={styles['action']}>Fav</button>
+                        )}
 
-                    {isAuthenticated && sideway.favSidewayId && (
-                        <button type="button" onClick={onFavDelete}>Unfav</button>
-                    )}
+                        {isAuthenticated && sideway.favSidewayId && (
+                            <button type="button" onClick={onFavDelete} className={styles['action']}>Unfav</button>
+                        )}
 
-                    {isAuthenticated && !sideway.plannedSidewayId && !sideway.visitedSidewayId && (
-                        <button type="button" onClick={onPlanCreate}>Plan</button>
-                    )}
+                        {isAuthenticated && !sideway.plannedSidewayId && !sideway.visitedSidewayId && (
+                            <button type="button" onClick={onPlanCreate} className={styles['action']}>Plan</button>
+                        )}
 
-                    {isAuthenticated && sideway.plannedSidewayId && (
-                        <button type="button" onClick={onPlanDelete}>Unplan</button>
-                    )}
+                        {isAuthenticated && sideway.plannedSidewayId && (
+                            <button type="button" onClick={onPlanDelete} className={styles['action']}>Unplan</button>
+                        )}
 
-                    {isAuthenticated && !sideway.visitedSidewayId && (
-                        <button type="button" onClick={onVisitCreate}>Visit</button>
-                    )}
+                        {isAuthenticated && !sideway.visitedSidewayId && (
+                            <button type="button" onClick={onVisitCreate} className={styles['action']}>Visit</button>
+                        )}
 
-                    {isAuthenticated && sideway.visitedSidewayId && (
-                        <button type="button" onClick={onVisitDelete}>Unvisit</button>
-                    )}
+                        {isAuthenticated && sideway.visitedSidewayId && (
+                            <button type="button" onClick={onVisitDelete} className={styles['action']}>Unvisit</button>
+                        )}
+                    </div>
 
-                    <h4>{sideway.location}</h4>
-                    <p >{sideway.category}</p>
+                    <img src={sideway.imageUrl || "/images/highway.jpg"} alt={sideway.title} className={styles['sideway-details-img']} />
+
+                    <h4 className={styles['sideway-details-location']}>{sideway.location}</h4>
                 </div>
 
-                <p className="text">{sideway.description}</p>
-                <p>Created on:   {formatDate(sideway._createdOn)}</p>
-                <p>Author: {sideway._ownerId}</p>
+                <p className={styles['sideway-details-text']}>{sideway.description}</p>
+
+                <p className={styles['sideway-details-author']}>Created on: {formatDate(sideway._createdOn)}</p>
+                <p className={styles['sideway-details-author']}>Author: {sideway.owner?.email}</p>
 
                 {isOwner && (
-                    <div className="buttons">
-                        <Link to={`/catalog/${sideway._id}/edit`} className="button">Edit</Link>
-                        <button className="button" onClick={() => onSidewayDelete(sideway._id, token)}>Delete</button>
+                    <div className={styles['action-buttons']}>
+                        <Link to={`/catalog/${sideway._id}/edit`} className={styles['action']}>Edit</Link>
+                        <button onClick={() => onSidewayDelete(sideway._id, token)} className={styles['action']}>Delete</button>
                     </div>
                 )}
 
-                <div className="details-comments">
-                    <h2>Comments:</h2>
-                    <ul>
-                        {sideway.comments && sideway.comments.map(x => (
-                            <li key={x._id} className="comment">
-                                <p>{x.author.email}: {x.comment}</p>
-                            </li>
-                        ))}
-                    </ul>
-
+                <div >
                     {!sideway.comments?.length && (
-                        <p className="no-comment">No comments.</p>
+                        <p className={styles['no-comment']}>No comments yet.</p>
                     )}
+
+                    {sideway.comments?.length > 0 &&
+                        <div className={styles['details-comments']}>
+                            <h2>Comments:</h2>
+                            <ul>
+                                {sideway.comments && sideway.comments.map(x => (
+                                    <li key={x._id}>
+                                        <p>{x.author.email}: {x.comment}</p>
+                                    </li>
+                                ))}
+                            </ul>
+
+                        </div>
+                    }
+
+                    {isAuthenticated && <CommentCreate onCommentSubmit={onCommentSubmit} />}
                 </div>
+
+                
+
             </div>
 
-            {isAuthenticated && <CommentCreate onCommentSubmit={onCommentSubmit} />}
 
-        </section>
+        </section >
     );
 };
