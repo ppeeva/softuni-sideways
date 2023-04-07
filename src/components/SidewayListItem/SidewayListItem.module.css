@@ -1,0 +1,53 @@
+
+.sideway-card {
+    background-color: #fff;
+    border-style: solid;
+    border-width: 0.5px;
+    border-radius: 15px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    max-width: 100%;
+    margin: 30px;
+    overflow: hidden;
+    width: 70%;
+    min-height: 250px;
+    height: auto;
+}
+
+.sideway-card-info {
+    padding: 30px;
+    position: relative;
+    width: 100%;
+}
+
+
+.sideway-card-info>img {
+    margin-top: -10px;
+    border-radius: 10%;
+    height: 200px;
+    width: 300px;
+    position: absolute;
+    top: 30px;
+    /* right: 30px; */
+    padding: 5px;
+    float: right;
+}
+
+.sideway-card-info>h5 {
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 500;
+    color: #161618;
+    margin-left: 350px;
+}
+
+.sideway-card-info>h2 {
+    font-size: 20px;
+    font-weight: 750;
+    color: #161618;
+    margin-left: 350px;
+}
+
+.sideway-card-info>a {
+    margin-left: 350px;
+}

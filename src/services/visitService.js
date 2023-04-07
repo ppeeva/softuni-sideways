@@ -34,4 +34,16 @@ export const getAllForUser = async (userId) => {
     return visits;
 };
 
+export const getCount = async () => {
+    try {
+        const result = await request.get(`${baseUrl}/?count`);
+        if(typeof(result) !== "number"){
+            return 0;
+        }
+        return result;
+    }
+    catch (error) {
+        return 0;
+    }
+};
 

@@ -1,8 +1,15 @@
 
-export const Home = () => {
+export const Home = ({
+    plansCount,
+    visitsCount,
+    sidewaysCount
+}) => {
     return (
         <section >
-            <h1>Home page</h1>
+            <h1>Pick up your journey</h1>
+            <p>{sidewaysCount} sideways to choose from</p>
+            <p>{plansCount} planned by users</p>
+            <p>{visitsCount} already visited by adventurers</p>
         </section>
     );
 };

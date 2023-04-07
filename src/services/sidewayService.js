@@ -28,6 +28,9 @@ export const getOne = async (sidewayId) => {
 export const getCount = async () => {
     try {
         const result = await request.get(`${baseUrl}/?count`);
+        if(typeof(result) !== "number"){
+            return 0;
+        }
         return result;
     }
     catch (error) {
@@ -36,6 +39,7 @@ export const getCount = async () => {
 };
 
 export const create = async (data, token) => {
+    console.log(token);
     const result = await request.post(baseUrl, data, token);
 
     return result;

@@ -120,12 +120,10 @@ export const SidewayDetails = ({
 
     return (
         <section id="sideway-details">
-            <h1>Sideway Details</h1>
             <div >
-
                 <div >
-                    <img src={sideway.imageUrl} alt={sideway.title} />
                     <h1>{sideway.title}</h1>
+                    <img src={sideway.imageUrl || "./images/highway.jpg"} alt={sideway.title} />
 
                     {isAuthenticated && !sideway.favSidewayId && (
                         <button type="button" onClick={onFavCreate}>Fav</button>

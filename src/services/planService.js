@@ -13,6 +13,19 @@ export const getOneForUserAndSideway = async (sidewayId, userId) => {
     return {};
 };
 
+export const getCount = async () => {
+    try {
+        const result = await request.get(`${baseUrl}/?count`);
+        if(typeof(result) !== "number"){
+            return 0;
+        }
+        return result;
+    }
+    catch (error) {
+        return 0;
+    }
+};
+
 export const create = async (sidewayId, token) => {
     const result = await request.post(baseUrl, { sidewayId }, token);
 

@@ -5,9 +5,9 @@ export const SidewayList = ({
 }) => {
     return (
         <section id="catalog-page" >
-            {sideways.length > 0 && (
+            {/* {sideways.length > 0 && (
                 <h1 >All Sideways</h1>
-            )}            
+            )}             */}
 
             {sideways.map(x =>
                 <SidewayListItem key={x._id} {...x} />
