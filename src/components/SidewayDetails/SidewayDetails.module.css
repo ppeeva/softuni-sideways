@@ -42,13 +42,15 @@
 }
 
 .action-buttons .action {
-    margin-left: auto;
+    margin-left: 10px;
     border: none;
     border-radius: 5px;
     padding: 12px 18px;
     background-color: orange;
     font-size: 16px;
     transition: all .3s ease-in-out;
+    color: #000;
+    text-decoration: none;
 }
 
 .action-buttons .action:hover {

@@ -5,8 +5,6 @@ import { AuthProvider } from './contexts/AuthContext';
 
 import { authServiceFactory } from './services/authService';
 import * as sidewayService from './services/sidewayService';
-import * as planService from './services/planService';
-import * as visitService from './services/visitService';
 
 import { Home } from './components/Home/Home';
 import { Login } from './components/Login/Login';
@@ -20,18 +18,13 @@ import { MyProfile } from './components/MyProfile/MyProfile';
 import { NotFound } from './components/NotFound/NotFound';
 
 import { initialCatalog } from './initialData';
-import styles from './App.module.css'
+import styles from './App.module.css';
 import { Navigation } from './components/Navigation/Navigation';
 
 
 function App() {
     const navigate = useNavigate();
     const [sideways, setSideways] = useState([]);
-
-    const [plansCount, setPlansCount] = useState(0);
-    const [visitsCount, setVisitsCount] = useState(0);
-    const [sidewaysCount, setSidewaysCount] = useState(0);
-
 
     useEffect(() => {
         populateData()
@@ -40,9 +33,6 @@ function App() {
             })
             .then(result => {
                 setSideways(result);
-            })
-            .then(() => {
-                getTotalCounts();
             });
     }, []);
 
@@ -74,18 +64,6 @@ function App() {
             console.log(error);
         };
     };
-
-    const getTotalCounts = () => {
-        return Promise.all([
-            planService.getCount(),
-            visitService.getCount(),
-            sidewayService.getCount(),
-        ]).then(([planData, visitData, sidewayData]) => {
-            setPlansCount(planData);
-            setVisitsCount(visitData);
-            setSidewaysCount(sidewayData);
-        })
-    }
 
     const onSidewayCreate = async (data, token) => {
         const newSideway = await sidewayService.create(data, token);
@@ -121,7 +99,7 @@ function App() {
 
                 <main id="main-content" className={styles['main-content']}>
                     <Routes>
-                        <Route path='/' element={<Home plansCount={plansCount} visitsCount={visitsCount} sidewaysCount={sidewaysCount}/>} />
+                        <Route path='/' element={<Home />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/register' element={<Register />} />
@@ -129,7 +107,6 @@ function App() {
                         <Route path='/create' element={<SidewayCreate onSidewayCreate={onSidewayCreate} />} />
                         <Route path='/catalog/:sidewayId' element={<SidewayDetails onSidewayDelete={onSidewayDelete} />} />
                         <Route path='/catalog/:sidewayId/edit' element={<SidewayEdit onSidewayEdit={onSidewayEdit} />} />
-                        {/* <Route path='/profile/*' element={ contextValues.isAuthenticated ? <MyProfile /> : <NotFound />} /> */}
                         <Route path='/profile/*' element={<MyProfile />} />
                         <Route path='*' element={<NotFound />} />
                     </Routes>

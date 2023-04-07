@@ -1,11 +1,29 @@
 
 import styles from './Home.module.css';
+import { useState, useEffect } from 'react';
+import * as sidewayService from '../../services/sidewayService';
+import * as planService from '../../services/planService';
+import * as visitService from '../../services/visitService';
 
-export const Home = ({
-    plansCount,
-    visitsCount,
-    sidewaysCount
-}) => {
+
+export const Home = () => {
+    const [plansCount, setPlansCount] = useState(0);
+    const [visitsCount, setVisitsCount] = useState(0);
+    const [sidewaysCount, setSidewaysCount] = useState(0);
+
+
+    useEffect(() => {
+        Promise.all([
+            planService.getCount(),
+            visitService.getCount(),
+            sidewayService.getCount(),
+        ]).then(([planData, visitData, sidewayData]) => {
+            setPlansCount(planData);
+            setVisitsCount(visitData);
+            setSidewaysCount(sidewayData);
+        });
+    }, []);
+
     return (
         <section className={styles['home-container']}>
             

@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import styles from './Navigation.module.css';
 
 export const Navigation = () => {
-    const { isAuthenticated, userEmail } = useContext(AuthContext);
+    const { isAuthenticated /*, userEmail*/ } = useContext(AuthContext);
 
     return (
         <header>

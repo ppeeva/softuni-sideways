@@ -12,6 +12,7 @@ import * as sidewayService from '../../services/sidewayService';
 import { MyCreated } from '../MyCreated/MyCreated';
 
 import styles from '../Navigation/Navigation.module.css';
+import profileStyles from './MyProfile.module.css';
 
 export const MyProfile = () => {
 
@@ -36,24 +37,31 @@ export const MyProfile = () => {
     }, []);
 
     return (
-        <section>
-            <img src="/images/avatar.jpg" alt={userEmail} className="avatar" />
-            <h3>{userEmail}</h3>
+        <section className={profileStyles['profile-page']}>
+            <div className={profileStyles['user-info']}>
+                <img src="/images/avatar.jpg" alt={userEmail} className={profileStyles['avatar']} />
+                <h3>{userEmail}</h3>
+            </div>
 
-            <nav className={styles['main-nav']}>
-                <NavLink className={({ isActive }) => isActive ? styles['nav-active'] : ''} to="fav">My Favourites</NavLink>
-                <NavLink className={({ isActive }) => isActive ? styles['nav-active'] : ''} to="planned">My Planned</NavLink>
-                <NavLink className={({ isActive }) => isActive ? styles['nav-active'] : ''} to="visited">My Visited</NavLink>
-                <NavLink className={({ isActive }) => isActive ? styles['nav-active'] : ''} to="createdbyme">Created by me</NavLink>
-            </nav>
+            <div>
+                <div className={profileStyles['sub-nav']}>
+                    <nav className={styles['main-nav']}>
+                        <NavLink className={({ isActive }) => isActive ? styles['nav-active'] : ''} to="fav">My Favourites</NavLink>
+                        <NavLink className={({ isActive }) => isActive ? styles['nav-active'] : ''} to="planned">My Planned</NavLink>
+                        <NavLink className={({ isActive }) => isActive ? styles['nav-active'] : ''} to="visited">My Visited</NavLink>
+                        <NavLink className={({ isActive }) => isActive ? styles['nav-active'] : ''} to="createdbyme">Created by me</NavLink>
+                    </nav>
+                </div>
 
-            <Routes>
-                <Route path='/fav' element={<MyFavourites favs={favs} />} />
-                <Route path='/planned' element={<MyPlanned plans={plans} />} />
-                <Route path='/visited' element={<MyVisited visits={visits} />} />
-                <Route path='/createdbyme' element={<MyCreated created={created} />} />
-            </Routes>
-
+                <div className={profileStyles['my-list']}>
+                    <Routes>
+                        <Route path='/fav' element={<MyFavourites favs={favs} />} />
+                        <Route path='/planned' element={<MyPlanned plans={plans} />} />
+                        <Route path='/visited' element={<MyVisited visits={visits} />} />
+                        <Route path='/createdbyme' element={<MyCreated created={created} />} />
+                    </Routes>
+                </div>
+            </div>
         </section >
     );
 };

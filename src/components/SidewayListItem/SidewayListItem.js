@@ -10,7 +10,7 @@ export const SidewayListItem = ({
     return (
         <div className={styles['sideway-card']}>
             <div className={styles['sideway-card-info']}>
-                <img src={imageUrl || "/images/highway.jpg"} alt={title} />
+                <img src={imageUrl || '/images/highway-small.jpg'} alt={title} />
                 <div className={styles['card-text']}>
                     <h2>{title}</h2>
                     <h5>{category}</h5>

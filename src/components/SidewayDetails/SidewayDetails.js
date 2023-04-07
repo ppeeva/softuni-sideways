@@ -153,7 +153,7 @@ export const SidewayDetails = ({
                         )}
                     </div>
 
-                    <img src={sideway.imageUrl || "/images/highway.jpg"} alt={sideway.title} className={styles['sideway-details-img']} />
+                    <img src={sideway.imageUrl || '/images/highway-small.jpg'} alt={sideway.title} className={styles['sideway-details-img']} />
 
                     <h4 className={styles['sideway-details-location']}>{sideway.location}</h4>
                 </div>

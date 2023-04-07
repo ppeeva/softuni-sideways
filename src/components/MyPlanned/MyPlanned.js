@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import styles from '../MyProfile/MyProfile.module.css';
 
 export const MyPlanned = ({
     plans,
@@ -10,7 +11,7 @@ export const MyPlanned = ({
                 <>
                     {plans.map(x =>
                         <div key={x.sidewayId}>
-                            <Link to={`/catalog/${x.sidewayId}`} >{x.sideway.title}</Link>
+                            <Link to={`/catalog/${x.sidewayId}`} className={styles['my-list-item']} >{x.sideway.title}</Link>
                         </div>
                     )}
                 </>
