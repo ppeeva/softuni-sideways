@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import { AuthProvider } from './contexts/AuthContext';
 
-import { authServiceFactory } from './services/authService';
+import * as authService from './services/authService';
 import * as sidewayService from './services/sidewayService';
 import { RouteGuard } from './guards/RouteGuard';
 
@@ -26,6 +26,7 @@ import styles from './App.module.css';
 function App() {
     const navigate = useNavigate();
     const [sideways, setSideways] = useState([]);
+    const [refreshHome, setRefreshHome] = useState(false);
 
     useEffect(() => {
         populateData()
@@ -34,6 +35,9 @@ function App() {
             })
             .then(result => {
                 setSideways(result);
+            })
+            .then(() => {
+                setRefreshHome(true);
             });
     }, []);
 
@@ -46,7 +50,6 @@ function App() {
             };
 
             let token = '';
-            const authService = authServiceFactory();
             const loginResult = await authService.login(loginData);
 
             token = loginResult.accessToken;
@@ -58,8 +61,9 @@ function App() {
                 }
             }
 
-            // TODO: error on logout??
-            //await authService.logout();
+            if (token) {
+                await authService.logout(token);
+            }
         }
         catch (error) {
             console.log(error);
@@ -100,7 +104,7 @@ function App() {
 
                 <main id="main-content" className={styles['main-content']}>
                     <Routes>
-                        <Route path='/' element={<Home />} />
+                        <Route path='/' element={<Home refreshHome={refreshHome} />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/catalog' element={<SidewayList sideways={sideways} />} />

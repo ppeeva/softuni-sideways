@@ -6,14 +6,26 @@ import * as visitService from '../../services/visitService';
 
 import styles from './Home.module.css';
 
-export const Home = () => {
+export const Home = ({
+    refreshHome,
+}) => {
     const [plansCount, setPlansCount] = useState(0);
     const [visitsCount, setVisitsCount] = useState(0);
     const [sidewaysCount, setSidewaysCount] = useState(0);
 
 
     useEffect(() => {
-        Promise.all([
+        loadCounts();
+    }, []);
+
+    useEffect(() => {
+        if(refreshHome){
+            loadCounts();
+        }
+    }, [refreshHome]);
+
+    const loadCounts = () => {
+        return Promise.all([
             planService.getCount(),
             visitService.getCount(),
             sidewayService.getCount(),
@@ -22,7 +34,7 @@ export const Home = () => {
             setVisitsCount(visitData);
             setSidewaysCount(sidewayData);
         });
-    }, []);
+    };
 
     return (
         <section className={styles['home-container']}>

@@ -6,8 +6,8 @@ const validateSideway = (sidewayData) => {
         errors.title = "Title must be between 3 and 50 characters long!";
     }
 
-    if (!sidewayData.location || sidewayData.location.length < 3 || sidewayData.location.length > 50) {
-        errors.location = "Location must be between 3 and 50 characters long!";
+    if (!sidewayData.location || sidewayData.location.length < 3 || sidewayData.location.length > 1000) {
+        errors.location = "Location must be between 3 and 1000 characters long!";
     }
 
     if (!sidewayData.category || sidewayData.category.length < 3 || sidewayData.category.length > 50) {

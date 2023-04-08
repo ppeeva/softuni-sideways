@@ -21,22 +21,36 @@ export const SidewayDetails = ({
     const [sideway, setSideway] = useState({});
 
     useEffect(() => {
-        Promise.all([
-            sidewayService.getOne(sidewayId),
-            commentService.getAll(sidewayId),
-            planService.getOneForUserAndSideway(sidewayId, userId),
-            favService.getOneForUserAndSideway(sidewayId, userId),
-            visitService.getOneForUserAndSideway(sidewayId, userId),
-        ]).then(([sidewayData, comments, plannedSideway, favSideway, visitedSideway]) => {
-            setSideway({
-                ...sidewayData,
-                comments,
-                plannedSidewayId: plannedSideway._id,
-                favSidewayId: favSideway._id,
-                visitedSidewayId: visitedSideway._id,
+        if(userId){
+            Promise.all([
+                sidewayService.getOne(sidewayId),
+                commentService.getAll(sidewayId),
+                planService.getOneForUserAndSideway(sidewayId, userId),
+                favService.getOneForUserAndSideway(sidewayId, userId),
+                visitService.getOneForUserAndSideway(sidewayId, userId),
+            ]).then(([sidewayData, comments, plannedSideway, favSideway, visitedSideway]) => {
+                setSideway({
+                    ...sidewayData,
+                    comments,
+                    plannedSidewayId: plannedSideway._id,
+                    favSidewayId: favSideway._id,
+                    visitedSidewayId: visitedSideway._id,
+                });
+    
             });
-
-        });
+        }
+        else {
+            Promise.all([
+                sidewayService.getOne(sidewayId),
+                commentService.getAll(sidewayId),
+            ]).then(([sidewayData, comments]) => {
+                setSideway({
+                    ...sidewayData,
+                    comments,
+                });    
+            });
+        }
+        
     }, [sidewayId]);
 
     const onCommentSubmit = async (values) => {
