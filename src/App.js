@@ -5,6 +5,7 @@ import { AuthProvider } from './contexts/AuthContext';
 
 import { authServiceFactory } from './services/authService';
 import * as sidewayService from './services/sidewayService';
+import { RouteGuard } from './guards/RouteGuard';
 
 import { Home } from './components/Home/Home';
 import { Login } from './components/Login/Login';
@@ -16,11 +17,11 @@ import { SidewayDetails } from './components/SidewayDetails/SidewayDetails';
 import { SidewayEdit } from './components/SidewayEdit/SidewayEdit';
 import { MyProfile } from './components/MyProfile/MyProfile';
 import { NotFound } from './components/NotFound/NotFound';
-
-import { initialCatalog } from './initialData';
-import styles from './App.module.css';
 import { Navigation } from './components/Navigation/Navigation';
 
+import { initialCatalog } from './initialData';
+
+import styles from './App.module.css';
 
 function App() {
     const navigate = useNavigate();
@@ -101,13 +102,15 @@ function App() {
                     <Routes>
                         <Route path='/' element={<Home />} />
                         <Route path='/login' element={<Login />} />
-                        <Route path='/logout' element={<Logout />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/catalog' element={<SidewayList sideways={sideways} />} />
-                        <Route path='/create' element={<SidewayCreate onSidewayCreate={onSidewayCreate} />} />
                         <Route path='/catalog/:sidewayId' element={<SidewayDetails onSidewayDelete={onSidewayDelete} />} />
-                        <Route path='/catalog/:sidewayId/edit' element={<SidewayEdit onSidewayEdit={onSidewayEdit} />} />
-                        <Route path='/profile/*' element={<MyProfile />} />
+                        <Route element={<RouteGuard />}>
+                            <Route path='/create' element={<SidewayCreate onSidewayCreate={onSidewayCreate} />} />
+                            <Route path='/catalog/:sidewayId/edit' element={<SidewayEdit onSidewayEdit={onSidewayEdit} />} />
+                            <Route path='/profile/*' element={<MyProfile />} />
+                            <Route path='/logout' element={<Logout />} />
+                        </Route>
                         <Route path='*' element={<NotFound />} />
                     </Routes>
                 </main>

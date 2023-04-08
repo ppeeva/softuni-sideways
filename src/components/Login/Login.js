@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useForm } from '../../hooks/useForm';
 
-import styles from '../Forms.module.css'
+import styles from '../Forms.module.css';
 
 export const Login = () => {
     const { onLogin } = useContext(AuthContext);

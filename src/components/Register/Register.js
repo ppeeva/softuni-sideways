@@ -5,7 +5,7 @@ import { useForm } from '../../hooks/useForm';
 import { AuthContext } from '../../contexts/AuthContext';
 import { validationHelper } from '../../utils/validationHelper';
 
-import styles from '../Forms.module.css'
+import styles from '../Forms.module.css';
 
 export const Register = () => {
     const { onRegister } = useContext(AuthContext);

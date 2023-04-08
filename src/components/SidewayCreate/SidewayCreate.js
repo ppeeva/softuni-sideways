@@ -1,7 +1,7 @@
 import { useForm } from '../../hooks/useForm';
 import { validationHelper } from '../../utils/validationHelper';
 
-import styles from '../Forms.module.css'
+import styles from '../Forms.module.css';
 
 export const SidewayCreate = ({
     onSidewayCreate,

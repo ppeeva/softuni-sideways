@@ -19,7 +19,7 @@ const validateSideway = (sidewayData) => {
     }
 
     return errors;
-}
+};
 
 const validateComment = (commentData) => {
     let errors = {};
@@ -29,7 +29,7 @@ const validateComment = (commentData) => {
     }
 
     return errors;
-}
+};
 
 const validateRegister = (registerData) => {
     let errors = {};
@@ -47,7 +47,7 @@ const validateRegister = (registerData) => {
     }
 
     return errors;
-}
+};
 
 
 export const validationHelper = {

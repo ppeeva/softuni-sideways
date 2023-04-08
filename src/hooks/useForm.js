@@ -25,7 +25,7 @@ export const useForm = (initialValues, onSubmitHandler, validateHandler) => {
                 .catch((error) => {
                     errors.submit = error.message;
                     setFormErrors(errors);
-                })
+                });
         }
     };
 

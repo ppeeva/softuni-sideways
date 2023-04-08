@@ -7,8 +7,8 @@ import * as planService from '../../services/planService';
 import * as favService from '../../services/favService';
 import * as visitService from '../../services/visitService';
 import { AuthContext } from '../../contexts/AuthContext';
-
 import { formatDate } from '../../utils/dateHelper';
+
 import { CommentCreate } from '../CommentCreate/CommentCreate';
 
 import styles from './SidewayDetails.module.css';

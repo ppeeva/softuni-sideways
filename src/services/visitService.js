@@ -22,7 +22,7 @@ export const create = async (sidewayId, token) => {
 
 export const deleteVisit = (visitId, token) => {
     request.del(`${baseUrl}/${visitId}`, null, token);
-}
+};
 
 export const getAllForUser = async (userId) => {
     const searchQuery = encodeURIComponent(`_ownerId="${userId}"`);

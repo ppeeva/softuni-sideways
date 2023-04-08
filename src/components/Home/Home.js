@@ -1,10 +1,10 @@
-
-import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
+
 import * as sidewayService from '../../services/sidewayService';
 import * as planService from '../../services/planService';
 import * as visitService from '../../services/visitService';
 
+import styles from './Home.module.css';
 
 export const Home = () => {
     const [plansCount, setPlansCount] = useState(0);

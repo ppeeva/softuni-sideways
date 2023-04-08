@@ -35,7 +35,7 @@ export const create = async (sidewayId, token) => {
 
 export const deletePlan = (planId, token) => {
     request.del(`${baseUrl}/${planId}`, null, token);
-}
+};
 
 export const getAllForUser = async (userId) => {
     const searchQuery = encodeURIComponent(`_ownerId="${userId}"`);

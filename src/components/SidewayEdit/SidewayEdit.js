@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import * as sidewayService from '../../services/sidewayService';
 import { validationHelper } from '../../utils/validationHelper';
-import styles from '../Forms.module.css'
+
+import styles from '../Forms.module.css';
 
 export const SidewayEdit = ({
     onSidewayEdit,

@@ -1,14 +1,15 @@
 import { useEffect, useState, useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
 import { NavLink, Routes, Route } from 'react-router-dom';
 
-import { MyFavourites } from './../MyFavourites/MyFavourites';
-import { MyVisited } from './../MyVisited/MyVisited';
-import { MyPlanned } from './../MyPlanned/MyPlanned';
+import { AuthContext } from '../../contexts/AuthContext';
 import * as planService from '../../services/planService';
 import * as favService from '../../services/favService';
 import * as visitService from '../../services/visitService';
 import * as sidewayService from '../../services/sidewayService';
+
+import { MyFavourites } from './../MyFavourites/MyFavourites';
+import { MyVisited } from './../MyVisited/MyVisited';
+import { MyPlanned } from './../MyPlanned/MyPlanned';
 import { MyCreated } from '../MyCreated/MyCreated';
 
 import styles from '../Navigation/Navigation.module.css';
