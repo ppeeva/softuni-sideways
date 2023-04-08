@@ -35,11 +35,10 @@ Users can register with email and password and can modify only their own content
 
 LocalStorage is used for persisting the user's token so that they are not logged out on refreshing the page.
 
-RouteGuard is added to prevent access to some pages for not authenticated users.
 
 ### front-end
 
-React Router is used for client-side navigation.
+React Router is used for client-side navigation. Route guard is added to prevent access to some pages for not authenticated users.
 
 ContextAPI is used for distributing and accessing data of the authenticated user across the pages. 
 
